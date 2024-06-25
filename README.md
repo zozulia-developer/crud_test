@@ -16,7 +16,7 @@ This project includes two possible tasks for a Python Developer test:
 
 ### Prerequisites
 - Python 3.11+
-- Django 3.5+
+- Django 5.0+
 - Django REST Framework
 - Django Allauth (for Task 1)
 
