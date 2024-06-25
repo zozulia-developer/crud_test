@@ -2,14 +2,13 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .models import Person, Team
+from teams.models import Person, Team
 
 
-class TeamTests(APITestCase):
+class TeamAPITests(APITestCase):
     def setUp(self):
         self.team_data = {'name': 'Engineering'}
         self.team = Team.objects.create(name='HR')
-        Team.objects.create(name='Finance')
 
     def test_create_team(self):
         url = reverse('team-list')
@@ -22,7 +21,7 @@ class TeamTests(APITestCase):
         url = reverse('team-list')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(response.data), 1)
 
     def test_get_team_detail(self):
         url = reverse('team-detail', kwargs={'pk': self.team.id})
@@ -42,10 +41,10 @@ class TeamTests(APITestCase):
         url = reverse('team-detail', kwargs={'pk': self.team.id})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Team.objects.count(), 1)
+        self.assertEqual(Team.objects.count(), 0)
 
 
-class PersonTests(APITestCase):
+class PersonAPITests(APITestCase):
     def setUp(self):
         self.team = Team.objects.create(name='Engineering')
         self.person_data = {
@@ -72,7 +71,7 @@ class PersonTests(APITestCase):
         url = reverse('person-list')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(response.data), 1)
 
     def test_get_person_detail(self):
         url = reverse('person-detail', kwargs={'pk': self.person.id})

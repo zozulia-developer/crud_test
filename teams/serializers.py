@@ -11,8 +11,8 @@ class TeamSerializer(serializers.ModelSerializer):
 
 class PersonSerializer(serializers.ModelSerializer):
     team_name = serializers.CharField(source='team.name', read_only=True)
-    team_id = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all(), write_only=True)
+    team = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all(), write_only=True)
 
     class Meta:
         model = Person
-        fields = ['id', 'first_name', 'last_name', 'email', 'team_id', 'team_name']
+        fields = ['id', 'first_name', 'last_name', 'email', 'team', 'team_name']
