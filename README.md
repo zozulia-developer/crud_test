@@ -38,17 +38,19 @@ This project includes two possible tasks for a Python Developer test:
     pip install -r requirements.txt
     ```
 
-4. Apply migrations:
+4. Create `.env` file from `.env.example`.
+
+5. Apply migrations:
     ```sh
     python manage.py migrate
     ```
 
-5. Create a superuser:
+6. Create a superuser:
     ```sh
     python manage.py createsuperuser
     ```
 
-6. Run the server:
+7. Run the server:
     ```sh
     python manage.py runserver
     ```
@@ -56,7 +58,7 @@ This project includes two possible tasks for a Python Developer test:
 ## Usage
 
 ### Google and Facebook Authentication (Task 1)
-- Configure your Google and Facebook credentials in the `settings.py` file.
+- Configure your Google and Facebook credentials in the `.env` file.
 - Access the authentication endpoints at `/accounts/google/login/` and `/accounts/facebook/login/`.
 
 ### CRUD REST API for Teams and People (Task 2)
